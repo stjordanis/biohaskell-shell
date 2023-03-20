@@ -1,11 +1,11 @@
-# horizon-shell
+# biohaskell-shell
 
-This is a shell for controlling horizon package sets.
+This is a shell for bioinformatics
 
 ## Running
 
 To run from this repository.
 
 ```
-nix run 'git+https://gitlab.horizon-haskell.net/shells/horizon-shell'
+nix run 'git+https://gitlab.horizon-haskell.net/shells/biohaskell-shell'
 ```

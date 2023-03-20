@@ -1,6 +1,6 @@
 {
 
-  description = "horizon-shell";
+  description = "biohaskell-shell";
 
   nixConfig = {
     extra-substituters = "https://horizon.cachix.org";
@@ -10,7 +10,7 @@
   inputs = {
     crazy-shell.url = "git+https://gitlab.homotopic.tech/crazy-shell/crazy-shell";
     flake-utils.url = "github:numtide/flake-utils";
-    horizon-platform.url = "git+https://gitlab.horizon-haskell.net/package-sets/horizon-platform";
+    horizon-biohaskell.url = "git+https://gitlab.horizon-haskell.net/package-sets/horizon-biohaskell";
     lint-utils = {
       url = "git+https://gitlab.homotopic.tech/nix/lint-utils";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -22,7 +22,7 @@
     { self
     , crazy-shell
     , flake-utils
-    , horizon-platform
+    , horizon-biohaskell
     , lint-utils
     , nixpkgs
     , ...
@@ -32,9 +32,9 @@
       let
         pkgs = import nixpkgs { inherit system; };
 
-        haskellPackages = horizon-platform.legacyPackages.${system};
+        haskellPackages = horizon-biohaskell.legacyPackages.${system};
 
-        horizon-shell = import ./default.nix {
+        biohaskell-shell = import ./default.nix {
           inherit pkgs haskellPackages mkCrazyShell;
         };
       in
@@ -44,7 +44,7 @@
 
           default = {
             type = "app";
-            program = "${horizon-shell}/bin/horizon-shell";
+            program = "${biohaskell-shell}/bin/biohaskell-shell";
           };
 
         };
@@ -56,7 +56,7 @@
             stylish-haskell = stylish-haskell { src = self; };
           };
 
-        packages.default = horizon-shell;
+        packages.default = biohaskell-shell;
 
       });
 }
